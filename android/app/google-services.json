@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "33146311171",
+    "project_id": "inventoryapp-1ce26",
+    "storage_bucket": "inventoryapp-1ce26.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:33146311171:android:b0d1b3da5b8fb458aab436",
+        "android_client_info": {
+          "package_name": "com.example.inventory_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "33146311171-3aujfp2gvqs2abtlhd11p1jkin46kbqr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqdQ7amfA5OkEM8HXITNC7VVpmvYuTFfU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "33146311171-3aujfp2gvqs2abtlhd11p1jkin46kbqr.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "33146311171-cmuv5labg60i73ga6thpf9iv9tnt6ouc.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.inventoryApp.dannys"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
