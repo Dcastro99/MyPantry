@@ -9,15 +9,11 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final categoryData = Provider.of<CategoryData>(context);
-    // categoryData.fetchCategories();
+
 
     return Scaffold(
       body: Home(
-        categories: [],
-        // categories: categoryData.categoryData
-        //     .map((category) => category.category)
-        //     .toList()
+      
       ),
       bottomNavigationBar: BNav2(),
     );

@@ -3,11 +3,8 @@ import 'package:inventory_app/pages/auth_page.dart';
 import 'package:inventory_app/pages/cart_page.dart';
 import 'package:inventory_app/pages/home_page.dart';
 import 'package:inventory_app/pages/login_or_register.dart';
-import 'package:inventory_app/pages/login_page.dart';
 import 'package:inventory_app/providers/value_provider.dart';
-import 'package:inventory_app/components/Cart/cart_display.dart';
 import 'package:inventory_app/components/Products/product_edit.dart';
-import 'package:inventory_app/home.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:inventory_app/services/cart_api.dart';
 import 'package:inventory_app/services/category_api.dart';
@@ -16,6 +13,7 @@ import 'package:inventory_app/providers/search_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
+
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
