@@ -25,7 +25,7 @@ Future<void> main() async {
     providers: [
       ChangeNotifierProvider(create: (context) => ProductData()),
       ChangeNotifierProvider(create: (context) => CartData()),
-      ChangeNotifierProvider(create: (context) => CategoryData()),
+      ChangeNotifierProvider<CategoryData>(create: (context) => CategoryData()),
       ChangeNotifierProvider<SearchProvider>(create: (_) => SearchProvider()),
       ChangeNotifierProvider<ProductListNotifier>(
         create: (_) => ProductListNotifier([]),

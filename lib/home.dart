@@ -53,13 +53,12 @@ class _HomeState extends State<Home> {
     final fetchedCategoryNames = await categoryData.fetchCategoryNames();
     setState(() {
       categories = fetchedCategoryNames;
-      print(categories);
+      print('categories in: $categories');
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blueGrey[700],
@@ -72,17 +71,25 @@ class _HomeState extends State<Home> {
             setState(() {
               selectedCategory = category;
               filteredProducts
-                  .clear(); // Clear the filtered products when category changes
+                  .clear(); 
             });
           },
         ),
       ),
-      body: ProductCardDisplay(
-        searchController: searchController,
-        filteredProducts: filteredProducts,
-        onSearch: (query, selectedCategory) =>
-            _handleSearch(context, query, selectedCategory),
-        categories: categories,
+      body: Consumer<CategoryData>(
+        builder: (context, categoryData, child) {
+          List<String> categoryNames = categoryData.categoryData
+              .map((category) => category.category)
+              .toList();
+
+          return ProductCardDisplay(
+            searchController: searchController,
+            filteredProducts: filteredProducts,
+            onSearch: (query, selectedCategory) =>
+                _handleSearch(context, query, selectedCategory),
+            categories: categoryNames,
+          );
+        },
       ),
     );
   }

@@ -82,11 +82,10 @@ class CategoryData with ChangeNotifier {
       _categoryData[existingCategoryIndex] = updatedCategory;
       // sendPutRequest(updatedCategory.toJson());
     } else {
-      Map<String, dynamic> categoryObj = {
-        'user': newCategory.user,
-        'category': newCategory.category,
-      };
-      sendPostRequest(categoryObj);
+      // Map<String, dynamic> categoryObj = {
+      //   'user': newCategory.user,
+      //   'category': newCategory.category,
+      // };
       _categoryData.add(newCategory);
     }
 
@@ -115,7 +114,7 @@ class CategoryData with ChangeNotifier {
 
 //-------------------Post category Data-------------------//
 
-Future<void> sendPostRequest(Map<String, dynamic> categoryObj) async {
+Future<void> sendCategoryPostRequest(Map<String, dynamic> categoryObj) async {
   final Map<String, String> headers = {
     'Content-Type':
         'application/json', // Set the appropriate content type for your API

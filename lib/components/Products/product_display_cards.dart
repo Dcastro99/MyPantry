@@ -99,7 +99,7 @@ class _ProductCardDisplayState extends State<ProductCardDisplay> {
     try {
       final fetchedProducts = await productData.fetchInventoryProducts();
       setState(() {
-        products = fetchedProducts; // Assign fetchedProducts here
+        products = fetchedProducts;
       });
     } catch (e) {
       print('Error fetching data: $e');
@@ -108,6 +108,7 @@ class _ProductCardDisplayState extends State<ProductCardDisplay> {
 
   @override
   Widget build(BuildContext context) {
+    print('widget.categories: ${widget.categories}');
     return Scaffold(
       backgroundColor: const Color.fromARGB(96, 121, 132, 135),
       body: ValueListenableBuilder(

@@ -11,7 +11,6 @@ import 'package:inventory_app/services/product_api.dart';
 import 'package:provider/provider.dart';
 
 class ProductForm extends StatefulWidget {
-  
   const ProductForm({super.key});
 
   @override
@@ -30,22 +29,31 @@ class _ProductFormState extends State<ProductForm> {
   String addNew = 'add new';
   bool categoriesFetched = false;
 
-  void addCategory(String newCategory) {
+  Future<void> addCategory(String newCategory) async {
+    Map<String, String> queryParams = {
+      'user': user,
+      'category': newCategory,
+    };
+
+    try {
+      await sendCategoryPostRequest(queryParams);
+      final categoryData = Provider.of<CategoryData>(context, listen: false);
+      await categoryData.fetchCategoryNames();
+    } catch (e) {}
+
+    CategoryData().addCategory(CategorySeed.fromJson({
+      'category': newCategory,
+    }));
+
     setState(() {
       categories.add(newCategory);
       dropdownCategoryValue = newCategory;
-      CategoryData().addCategory(CategorySeed(
-        user: user,
-        category: newCategory,
-        id: '',
-      ));
     });
   }
 
   @override
   void initState() {
     super.initState();
-    print(categoriesFetched);
     if (!categoriesFetched) {
       _fetchCategories();
     }
@@ -54,14 +62,13 @@ class _ProductFormState extends State<ProductForm> {
   Future<void> _fetchCategories() async {
     final categoryData = Provider.of<CategoryData>(context, listen: false);
     final fetchedCategoryNames = await categoryData.fetchCategoryNames();
-    if(mounted){
+    if (mounted) {
       setState(() {
         dropdownCategoryValue = '';
         categories.addAll(fetchedCategoryNames);
         categoriesFetched = true;
       });
     }
-
   }
 
   @override
@@ -70,8 +77,6 @@ class _ProductFormState extends State<ProductForm> {
     final categoryNames =
         categoryData.categoryData.map((category) => category.category).toSet();
     final categoriesList = categoryNames.toList();
-
-    print('categories: $categoryNames');
 
     return SimpleDialog(
       shape: RoundedRectangleBorder(
@@ -147,8 +152,7 @@ class _ProductFormState extends State<ProductForm> {
                         ),
                       ),
                       MyDropdown(
-                        items:
-                            [dropdownCategoryValue] + categoriesList + [addNew],
+                        items: [''] + categoriesList + [addNew],
                         selectedItem: dropdownCategoryValue,
                         onChanged: (value) {
                           setState(() {
