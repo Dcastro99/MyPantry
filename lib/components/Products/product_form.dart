@@ -39,7 +39,9 @@ class _ProductFormState extends State<ProductForm> {
       await sendCategoryPostRequest(queryParams);
       final categoryData = Provider.of<CategoryData>(context, listen: false);
       await categoryData.fetchCategoryNames();
-    } catch (e) {}
+    } catch (e) {
+      print('Error adding category: $e');
+    }
 
     CategoryData().addCategory(CategorySeed.fromJson({
       'category': newCategory,
@@ -215,6 +217,8 @@ class _ProductFormState extends State<ProductForm> {
                               );
                               return;
                             }
+
+                            
 
                             await Provider.of<ProductData>(context,
                                     listen: false)

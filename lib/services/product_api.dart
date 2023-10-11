@@ -37,11 +37,11 @@ class ProductData with ChangeNotifier {
 
       if (response.statusCode == 200) {
         final jsonData = jsonDecode(response.body);
+        print('Response: $jsonData');
         final List<ProductSeed> fetchedProducts =
             jsonData.map<ProductSeed>((json) {
           return ProductSeed.fromJson(json);
         }).toList();
-
 
         _productData = fetchedProducts;
         notifyListeners();
@@ -55,7 +55,6 @@ class ProductData with ChangeNotifier {
     }
   }
 
- 
   //-------------------ADD PRODUCT PROVIDER-------------------//
   addProduct(ProductSeed newProduct) {
     final existingProductIndex = _productData.indexWhere(

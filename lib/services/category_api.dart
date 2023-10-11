@@ -41,6 +41,7 @@ class CategoryData with ChangeNotifier {
         final jsonData = jsonDecode(response.body) as List<dynamic>;
         _categoryData =
             jsonData.map((json) => CategorySeed.fromJson(json)).toList();
+
         notifyListeners();
         return _categoryData;
       } else {
