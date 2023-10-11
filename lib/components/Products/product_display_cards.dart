@@ -108,7 +108,6 @@ class _ProductCardDisplayState extends State<ProductCardDisplay> {
 
   @override
   Widget build(BuildContext context) {
-    print('widget.categories: ${widget.categories}');
     return Scaffold(
       backgroundColor: const Color.fromARGB(96, 121, 132, 135),
       body: ValueListenableBuilder(

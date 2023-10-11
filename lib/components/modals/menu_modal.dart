@@ -14,7 +14,16 @@ class MenuModal extends StatefulWidget {
 }
 
 class _MenuModalState extends State<MenuModal> {
-  final _userName = FirebaseAuth.instance.currentUser!.email!;
+  late final RegExp regex;
+  late final RegExpMatch? match;
+
+  _MenuModalState() {
+    _userName = FirebaseAuth.instance.currentUser!.email!;
+    regex = RegExp(r'^([^@]+)@');
+    match = regex.firstMatch(_userName);
+  }
+  late String shortName = match!.group(1)!;
+  late String _userName;
 
   void logoutOut() async {
     Navigator.pop(context);
@@ -24,8 +33,8 @@ class _MenuModalState extends State<MenuModal> {
   @override
   Widget build(BuildContext context) {
     return Container(
-       width: double.infinity,
-       height: 600,
+      width: double.infinity,
+      height: 600,
       color: Colors.transparent,
       child: Drawer(
         shape: const RoundedRectangleBorder(
@@ -68,14 +77,13 @@ class _MenuModalState extends State<MenuModal> {
                   ListTile(
                     title: const Center(child: Text('INVENTORY')),
                     onTap: () {
-                                            Navigator.pop(context);
+                      Navigator.pop(context);
 
                       Navigator.pushNamed(context, '/home');
                     },
                   ),
                   const SizedBox(height: 10),
                   ListTile(
-                    
                     title: const Center(child: Text('NOTES')),
                     onTap: () {},
                   ),
@@ -113,7 +121,7 @@ class _MenuModalState extends State<MenuModal> {
                             'https://www.pngitem.com/pimgs/m/146-1468479_my-profile-icon-blank-profile-picture-circle-hd.png'),
                       ),
                       Text(
-                        _userName,
+                        shortName,
                         style: const TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,

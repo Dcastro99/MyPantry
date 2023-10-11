@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:inventory_app/components/Products/product_display_cards.dart';
 import 'package:inventory_app/models/product_seed.dart';
 import 'package:inventory_app/providers/value_provider.dart';
-import 'package:inventory_app/components/Cart/cart_display.dart';
 import 'package:inventory_app/components/Header/header.dart';
-import 'package:inventory_app/components/Products/product_display.dart';
 import 'package:inventory_app/services/category_api.dart';
 import 'package:inventory_app/services/product_api.dart';
 import 'package:inventory_app/providers/search_provider.dart';
@@ -53,7 +51,6 @@ class _HomeState extends State<Home> {
     final fetchedCategoryNames = await categoryData.fetchCategoryNames();
     setState(() {
       categories = fetchedCategoryNames;
-      print('categories in: $categories');
     });
   }
 
@@ -65,8 +62,8 @@ class _HomeState extends State<Home> {
         title: Header(
           searchController: searchController,
           onSearch: (query, selectedCategory) => _handleSearch(
-              context, query, selectedCategory), // Pass selectedCategory
-          selectedCategory: selectedCategory, // Pass selectedCategory
+              context, query, selectedCategory), 
+          selectedCategory: selectedCategory, 
           onCategoryChange: (category) {
             setState(() {
               selectedCategory = category;
